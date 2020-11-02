@@ -16,7 +16,7 @@ def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
     if k == 1:
         return max(nums)
     sub_array_sum = 0
-    for ind, elem in enumerate(nums[: -k + 1]):
+    for ind in range(len(nums))[: -k + 1]:
         if sum(nums[ind : ind + k]) > sub_array_sum:
             sub_array_sum = sum(nums[ind : ind + k])
     return sub_array_sum

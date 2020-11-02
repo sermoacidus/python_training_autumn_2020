@@ -22,10 +22,10 @@ def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
     with open(file_name) as f:
         for line in f:
             if not flag:
-                _max, _min = int(line), int(line)
+                max_num, min_num = int(line), int(line)
                 flag = 1
-            if int(line) > _max:
-                _max = int(line)
-            if int(line) <= _min:
-                _min = int(line)
-    return _min, _max
+            if int(line) > max_num:
+                max_num = int(line)
+            if int(line) <= min_num:
+                min_num = int(line)
+    return min_num, max_num
