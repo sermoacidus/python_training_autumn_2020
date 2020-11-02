@@ -1,5 +1,6 @@
+from collections.abc import Sequence
+
 import pytest
-from _collections_abc import Sequence
 from task2.fib_check import check_fibonacci
 
 
