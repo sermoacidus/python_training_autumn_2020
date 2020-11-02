@@ -13,7 +13,6 @@ with open("some_file.txt") as fi:
         ...
 
 """
-import random
 from typing import Tuple
 
 
