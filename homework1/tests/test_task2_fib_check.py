@@ -1,4 +1,4 @@
-from collections.abc import Sequence
+from typing import Sequence
 
 import pytest
 from task2.fib_check import check_fibonacci
@@ -68,7 +68,7 @@ from task2.fib_check import check_fibonacci
         ),
     ],
 )
-def test_if_fib(value: Sequence, expected_result: bool):
+def test_if_fib(value: Sequence[int], expected_result: bool):
     actual_result = check_fibonacci(value)
 
     assert actual_result == expected_result
