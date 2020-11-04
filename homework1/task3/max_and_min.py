@@ -17,14 +17,17 @@ from typing import Tuple
 
 
 def find_maximum_and_minimum(file_name: str) -> Tuple[int, int]:
-    flag = 0
     with open(file_name) as f:
-        for line in f:
-            if not flag:
-                max_num, min_num = int(line), int(line)
-                flag = 1
-            if int(line) > max_num:
-                max_num = int(line)
-            if int(line) <= min_num:
-                min_num = int(line)
-    return min_num, max_num
+        file_generator = iter(f.readline, "")
+        first_line = int(next(file_generator))
+        min_, max_ = first_line, first_line
+        try:
+            while True:
+                new_line = int(next(file_generator))
+                if new_line > max_:
+                    max_ = new_line
+                elif new_line < min_:
+                    min_ = new_line
+        except StopIteration:
+            pass
+    return min_, max_

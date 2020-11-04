@@ -12,7 +12,7 @@ from typing import List
 
 def check_sum_of_four(a: List[int], b: List[int], c: List[int], d: List[int]) -> int:
     result = 0
-    for i in product(a, b, c, d):
-        if sum(i) == 0:
+    for combination in product(a, b, c, d):
+        if sum(combination) == 0:
             result += 1
     return result
