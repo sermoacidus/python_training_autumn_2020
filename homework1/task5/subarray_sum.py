@@ -13,13 +13,10 @@ from typing import List
 
 
 def find_maximal_subarray_sum(nums: List[int], k: int) -> int:
-    array_length = len(nums)
-    sub_array_sum = 0
-    if k == 1:
-        return max(nums)
-    for subarray_length in range(1, k + 1):
-        for ind in range(array_length - subarray_length + 1):
-            current_subarray_sum = sum(nums[ind : ind + subarray_length])
-            if current_subarray_sum > sub_array_sum:
-                sub_array_sum = current_subarray_sum
-    return sub_array_sum
+    sub_array_sums = []
+    combinations = []
+    for subarray_size in range(1, k + 1):
+        combinations.append(nums[subarray_size - 1 :])
+        for subarray in zip(*combinations[0:subarray_size]):
+            sub_array_sums.append(sum(subarray))
+    return max(sub_array_sums)
