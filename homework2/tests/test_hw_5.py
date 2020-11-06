@@ -3,8 +3,6 @@ import string
 import pytest
 from tasks.hw5 import custom_range
 
-print(f"test after import")
-
 
 @pytest.mark.parametrize(
     ["iter_input", "args", "expected_result"],
