@@ -17,6 +17,7 @@ assert = custom_range(string.ascii_lowercase, 'p', 'g', -2) == ['p', 'n', 'l', '
 
 
 def custom_range(iterable, *args) -> list:
+    assert len(args) < 4, "Too many arguments given, 3 or less expected"
     if len(args) == 1:
         stop_index = iterable.index(args[0])
         return [elem for ind, elem in enumerate(iterable) if ind < stop_index]

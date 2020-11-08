@@ -9,8 +9,6 @@ Given a file containing text. Complete using only default collections:
 from string import printable, punctuation
 from typing import List
 
-filepath = "data.txt"
-
 
 def get_longest_diverse_words(file_path: str) -> List[str]:
     with open(file_path, "rb") as f:
