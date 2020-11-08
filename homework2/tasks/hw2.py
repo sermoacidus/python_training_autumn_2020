@@ -22,4 +22,5 @@ from typing import List, Tuple
 
 
 def major_and_minor_elem(inp: List) -> Tuple[int, int]:
-    return Counter(inp).most_common()[0][0], Counter(inp).most_common()[-1][0]
+    counter = Counter(inp).most_common()
+    return counter[0][0], counter[-1][0]
