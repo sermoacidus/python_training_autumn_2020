@@ -19,6 +19,7 @@ from tasks.hw5 import custom_range
             (0.2, 1, -2),
             [0.2, "hello", 6, 13, 5],
         ),
+        (string.ascii_lowercase, "g", ["a", "b", "c", "d", "e", "f"]),
     ],
 )
 def test_custom_range(iter_input, args, expected_result: list):
