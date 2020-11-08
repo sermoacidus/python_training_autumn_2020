@@ -24,7 +24,7 @@ def get_longest_diverse_words(file_path: str) -> List[str]:
         words = text_without_escape_ch.split()
         for word in words:
             word.strip()
-        return sorted(words, key=lambda x: len(set(x)), reverse=True)[:10]
+    return sorted(words, key=lambda x: len(set(x)), reverse=True)[:10]
 
 
 def get_rarest_char(file_path: str) -> str:
@@ -36,7 +36,7 @@ def get_rarest_char(file_path: str) -> str:
                 counter[symb] += 1
             else:
                 counter[symb] = 1
-        return list(sorted(counter.items(), key=lambda item: item[1]))[0][0]
+    return list(sorted(counter.items(), key=lambda item: item[1]))[0][0]
 
 
 def count_punctuation_chars(file_path: str) -> int:
@@ -70,6 +70,4 @@ def get_most_common_non_ascii_char(file_path: str) -> str:
                     counter[symb] += 1
                 else:
                     counter[symb] = 1
-        return list(sorted(counter.items(), key=lambda item: item[1], reverse=True))[0][
-            0
-        ]
+    return list(sorted(counter.items(), key=lambda item: item[1], reverse=True))[0][0]

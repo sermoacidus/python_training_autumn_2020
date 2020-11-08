@@ -6,6 +6,7 @@ def func(a, b):
 
 
 def test_cache():
-    test1 = cache(func)
-    test2 = cache(func)
-    assert test1(100, 200) == test2(100, 200)
+    testfunc = cache(func)
+    test1 = testfunc(100, 200)
+    test2 = testfunc(100, 200)
+    assert test1 is test2
