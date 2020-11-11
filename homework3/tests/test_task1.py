@@ -14,8 +14,8 @@ def test_cache():
     test5 = test_func(100, 200)
     test6 = test_func(100, 200)
     assert test1 == test2 == test3 == test4 == test5 == test6
-    assert test1 is test2
-    assert test2 is test3
-    assert test3 is test4
-    assert test4 is not test5
-    assert test5 is test6
+    assert test1 is test2, "first output is not cached"
+    assert test2 is test3, "second output is not cached"
+    assert test3 is test4, "third output is not cached"
+    assert test4 is not test5, "output is cached, but must create new object"
+    assert test5 is test6, "first output of new input is not cached"
