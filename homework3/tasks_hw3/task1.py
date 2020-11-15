@@ -15,17 +15,19 @@ def cache(times):
 
     def wrapper(func):
         def inner_f(*args):
-
-            if args in cache_container and cache_container[args][1] > 0:
-                output = cache_container[args][0]
-                cache_container[args][1] -= 1
-                if cache_container[args][1] == 0:
-                    del cache_container[args]
+            immut_args = str(args).__hash__()
+            if immut_args in cache_container and cache_container[immut_args][1] > 0:
+                output = cache_container[immut_args][0]
+                cache_container[immut_args][1] -= 1
+                if cache_container[immut_args][1] == 0:
+                    del cache_container[immut_args]
+                print("cached result")
                 return output
             else:
                 result = func(*args)
-                cache_container[args] = [result, times]
-
+                cache_container[immut_args] = [result, times]
+            print("new result")
+            print(cache_container)
             return result
 
         return inner_f
