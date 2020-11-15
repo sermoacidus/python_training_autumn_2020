@@ -13,6 +13,14 @@ def create_files_with_legitimate_data():
 
 
 @pytest.fixture
+def create_files_with_legitimate_data_but_False():
+    file_name = os.path.dirname(__file__) + "test_false_answers.txt"
+    with open(file_name, "w") as file_handler:
+        file_handler.write("3")
+        return file_name
+
+
+@pytest.fixture
 def create_files_with_exceptions():
     file_name = os.path.dirname(__file__) + "test_exceptions_task1.txt"
     file_handler = open(file_name, "w")
@@ -25,6 +33,11 @@ def create_files_with_exceptions():
 def test_task_positive(create_files_with_legitimate_data):
     assert read_magic_number(create_files_with_legitimate_data)
     os.remove(create_files_with_legitimate_data)
+
+
+def test_task_false(create_files_with_legitimate_data_but_False):
+    assert read_magic_number(create_files_with_legitimate_data_but_False) is False
+    os.remove(create_files_with_legitimate_data_but_False)
 
 
 def test_task_negative(create_files_with_exceptions):
