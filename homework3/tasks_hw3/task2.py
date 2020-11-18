@@ -44,5 +44,5 @@ def runtime_timer(f):
 
 
 def mproc_sum(func, *args):
-    with multiprocessing.Pool(os.cpu_count() * 5) as p:
+    with multiprocessing.Pool(os.cpu_count() * 7) as p:
         return sum(p.map(func, range(*args)))
