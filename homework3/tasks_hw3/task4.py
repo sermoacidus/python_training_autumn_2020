@@ -20,4 +20,4 @@ Write a function that detects if a number is Armstrong number in functionaly sty
 
 def is_armstrong(number: int) -> bool:
     num_in_digits = [int(symb) for symb in str(number)]
-    return number == sum(list(map(lambda x: x ** len(num_in_digits), num_in_digits)))
+    return number == sum(map(lambda x: x ** len(num_in_digits), num_in_digits))
