@@ -1,2 +1,4 @@
 pytest
 pytest-sugar
+beautifulsoup4
+lxml
