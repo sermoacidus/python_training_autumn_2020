@@ -5,10 +5,11 @@ import tasks_hw4.task2_mock
 
 
 def test_connection():
-    mock = MagicMock(return_value=".........")
+    mock = MagicMock(return_value=".....")
     tasks_hw4.task2_mock.connect_to_web = mock
 
-    assert tasks_hw4.task2_mock.count_dots_on_i("whatever.com") == 9
+    assert isinstance(tasks_hw4.task2_mock.connect_to_web, MagicMock)
+    assert tasks_hw4.task2_mock.count_dots_on_i("whatever.com") == 5
     assert mock.mock_calls
 
 
