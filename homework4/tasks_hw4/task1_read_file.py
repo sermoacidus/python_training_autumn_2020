@@ -32,4 +32,4 @@ def read_magic_number(path: str) -> bool:
         try:
             return True if 1 <= float(first_line) < 3 else False
         except:
-            raise ValueError("WrongValue")
+            raise ValueError("Wrong input.Digits in first line expected")

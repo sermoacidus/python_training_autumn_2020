@@ -5,41 +5,30 @@ from tasks_hw4.task1_read_file import read_magic_number
 
 
 @pytest.fixture
-def create_files_with_legitimate_data():
-    file_name = os.path.dirname(__file__) + "test_right_answers.txt"
-    with open(file_name, "w") as file_handler:
-        file_handler.write("2.9")
+def name_of_test_file(tmpdir):
+    test_files = []
+
+    def file_creator():
+        temp_file = tmpdir.join("test.txt")
+        temp_file_name = os.path.join(temp_file.dirname, temp_file.basename)
+        test_files.append(temp_file_name)
+        return temp_file_name
+
+    def arg_courier(param=None):
+        action_map = {"right": "2.9", "wrong": "3", "err": "a"}
+        file_name = file_creator()
+        with open(file_name, "w") as fh:
+            for action, data in action_map.items():
+                if param == action:
+                    fh.write(data + "\n")
         return file_name
 
-
-@pytest.fixture
-def create_files_with_legitimate_data_but_False():
-    file_name = os.path.dirname(__file__) + "test_false_answers.txt"
-    with open(file_name, "w") as file_handler:
-        file_handler.write("3")
-        return file_name
+    yield arg_courier
+    os.remove(test_files[0])
 
 
-@pytest.fixture
-def create_files_with_exceptions():
-    file_name = os.path.dirname(__file__) + "test_exceptions_task1.txt"
-    file_handler = open(file_name, "w")
-    file_handler.write("a")
-    yield file_name
-    file_handler.close()
-    os.remove(file_name)
-
-
-def test_task_positive(create_files_with_legitimate_data):
-    assert read_magic_number(create_files_with_legitimate_data)
-    os.remove(create_files_with_legitimate_data)
-
-
-def test_task_false(create_files_with_legitimate_data_but_False):
-    assert read_magic_number(create_files_with_legitimate_data_but_False) is False
-    os.remove(create_files_with_legitimate_data_but_False)
-
-
-def test_task_negative(create_files_with_exceptions):
-    with pytest.raises(ValueError, match="WrongValue"):
-        read_magic_number(create_files_with_exceptions)
+def test_different_values(name_of_test_file):
+    assert read_magic_number(name_of_test_file(param="right")) is True
+    assert read_magic_number(name_of_test_file(param="wrong")) is False
+    with pytest.raises(ValueError, match="Wrong input.Digits in first line expected"):
+        read_magic_number(name_of_test_file(param="err"))
