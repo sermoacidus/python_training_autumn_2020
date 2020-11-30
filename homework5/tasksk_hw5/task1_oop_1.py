@@ -72,6 +72,4 @@ class Homework:
 
     def is_active(self) -> bool:
         """If period isn't expired yet - returns True, otherwise - False"""
-        return (
-            True if (datetime.datetime.now() - self.deadline) < self.created else False
-        )
+        return (datetime.datetime.now() - self.deadline) < self.created
