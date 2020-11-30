@@ -3,14 +3,14 @@ import functools
 
 def save_metainf_deco(source_func):
     def inner(func):
-        def wrapper2(*args, **kwargs):
-            wrapper2.__name__ = source_func.__name__
-            wrapper2.__doc__ = source_func.__doc__
-            wrapper2.__original_func = source_func
+        def deco_wrapper(*args, **kwargs):
+            deco_wrapper.__name__ = source_func.__name__
+            deco_wrapper.__doc__ = source_func.__doc__
+            deco_wrapper.__original_func = source_func
             result = func(*args, **kwargs)
             return result
 
-        return wrapper2
+        return deco_wrapper
 
     return inner
 
