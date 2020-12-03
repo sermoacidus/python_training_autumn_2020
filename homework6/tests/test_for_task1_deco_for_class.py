@@ -1,4 +1,3 @@
-import pytest
 from tasks_hw6.task1_deco_for_class import User, instances_counter
 
 

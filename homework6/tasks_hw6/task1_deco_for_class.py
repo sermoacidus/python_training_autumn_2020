@@ -11,7 +11,6 @@ reset_instances_counter - сбросить счетчик экземпляров
 
 
 def instances_counter(cls):
-    """Some code"""
 
     if "amount_of_instances" not in cls.__dict__:
         setattr(cls, "amount_of_instances", 0)
@@ -22,11 +21,13 @@ def instances_counter(cls):
         cls.amount_of_instances += 1
         return source_method_save(cls, *args, **kwargs)
 
-    def get_created_instances(*args, **kwargs):
+    @classmethod
+    def get_created_instances(cls):
         amount = cls.amount_of_instances
         return amount
 
-    def reset_instances_counter(*args, **kwargs):
+    @classmethod
+    def reset_instances_counter(cls):
         current_amount_of_instances = cls.amount_of_instances
         setattr(cls, "amount_of_instances", 0)
         return current_amount_of_instances
