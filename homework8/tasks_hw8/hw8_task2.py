@@ -44,7 +44,7 @@ class TableData:
     def __getitem__(self, item, bd_connect: sqlite3.Cursor = None):
         self.check_connection(bd_connect)
         premade_selection = f"select * from {self.table_name} where name=:name"
-        return bd_connect.execute(premade_selection, (item,)).fetchall()
+        return bd_connect.execute(premade_selection, (item,)).fetchall()[0]
 
     @TableDataDecorators.db_conn
     def __contains__(self, item, bd_connect: sqlite3.Cursor = None):
@@ -78,22 +78,3 @@ class TableDataIter:
             return iter_collection[self.iter_limiter - 1]
         else:
             raise StopIteration
-
-
-if __name__ == "__main__":
-    print("*" * 50)
-    presidents = TableData(database_name="example.sqlite", table_name="presidents")
-    print(presidents)
-    books = TableData(database_name="example.sqlite", table_name="books")
-    print(books)
-    print(len(books))
-    print(len(presidents))
-    print(presidents["Yeltsin"])
-    print("Yeltsin" in presidents)
-    print("*" * 10)
-    for book in books:
-        print(book["name"])
-    iter = iter(books)
-    print(next(iter))
-    print(next(iter))
-    print(next(iter))
