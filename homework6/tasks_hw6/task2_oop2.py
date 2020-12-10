@@ -59,10 +59,12 @@ class DeadLineError(ValueError):
 
 
 @dataclass()
-class Teacher:
+class Person:
     last_name: str
     first_name: str
 
+
+class Teacher(Person):
     homework_done = defaultdict(set)
 
     @staticmethod
@@ -82,8 +84,7 @@ class Teacher:
         cls.homework_done.pop(homework.text) if homework else cls.homework_done.clear()
 
 
-@dataclass()
-class Student(Teacher):
+class Student(Person):
     def do_homework(self, homework: "Homework", task_solution: str):
         """Returns homework obj if it's still active otherwise returns None"""
         if homework.is_active():
