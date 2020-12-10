@@ -44,13 +44,15 @@ class TableData:
     def __getitem__(self, item, bd_connect: sqlite3.Cursor = None):
         self.check_connection(bd_connect)
         premade_selection = f"select * from {self.table_name} where name=:name"
-        return bd_connect.execute(premade_selection, (item,)).fetchall()[0]
+        return bd_connect.execute(premade_selection, (item,)).fetchone()
 
     @TableDataDecorators.db_conn
     def __contains__(self, item, bd_connect: sqlite3.Cursor = None):
         self.check_connection(bd_connect)
         premade_selection = f"select * from {self.table_name} where name=:name"
-        return len(bd_connect.execute(premade_selection, (item,)).fetchall()) > 0
+        return (
+            True if bd_connect.execute(premade_selection, (item,)).fetchone() else False
+        )
 
     def __iter__(self):
         return TableDataIter(self.database_name, self.table_name)
