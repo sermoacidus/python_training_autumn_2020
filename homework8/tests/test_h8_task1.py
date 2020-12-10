@@ -36,7 +36,7 @@ def test_setting_values(name_of_test_file):
 def test_exception_if_key_is_present(name_of_test_file):
     storage = CustomStorageReader(name_of_test_file)
     with pytest.raises(
-        ValueError,
+        KeyError,
         match='The key "power" is already present is storage. Its value is "9001"',
     ):
         storage.power = "test"

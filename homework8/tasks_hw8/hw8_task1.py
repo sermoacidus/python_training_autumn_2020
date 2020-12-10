@@ -18,10 +18,10 @@ class CustomStorageReader:
     def opener(self, item, presence_checker=None):
         with open(self.file_path, "r") as fh:
             for line in fh.readlines():
-                line = line.rstrip().split("=")
+                line = line.rstrip().split("=", 1)
                 if line[0] == item:
                     if presence_checker:
-                        raise ValueError(
+                        raise KeyError(
                             f'The key "{item}" is already present is storage. Its value is "{line[1]}"'
                         )
                     return int(line[1]) if line[1].isdigit() else line[1]
