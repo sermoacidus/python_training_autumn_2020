@@ -1,7 +1,11 @@
-from homework8.tasks_hw8.hw8_task2 import TableData
+from pathlib import Path
 
-presidents = TableData(database_name="example.sqlite", table_name="presidents")
-books = TableData(database_name="example.sqlite", table_name="books")
+from tasks_hw8.hw8_task2 import TableData
+
+presidents = TableData(
+    database_name=Path("tests/example.sqlite"), table_name="presidents"
+)
+books = TableData(database_name=Path("tests/example.sqlite"), table_name="books")
 
 
 def test_length_method():
